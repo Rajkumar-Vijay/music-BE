@@ -29,7 +29,12 @@ connectDB();
 connectCloudinary();
 // middlwares
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: ['https://dulcet-strudel-5a18da.netlify.app', 'http://localhost:5173', 'http://localhost:5174'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 // initialising routes
 console.log("Registering auth routes...");
 app.use("/api/auth", authRouter);
